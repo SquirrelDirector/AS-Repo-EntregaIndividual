@@ -132,7 +132,7 @@ app.get('/editar', urlencodedParser, (req, res) => {
           var texto=response.rows[0].texto;
           var id = response.rows[0].id;
           //--------------------------------
-          var headHTML="<html><head><title>Pruebas desde Node.JS</title></head><body><h1>Modifique datos en el libro de visitas</h1>";
+          var headHTML="<html><head><style>*{ font-family: Verdana }</style><title>Pruebas desde Node.JS</title></head><body><h1>Modifique datos en el libro de visitas</h1>";
           var form="<form method='POST' action='editar'>";
           var inputNombre="<label for='nombre'>Nombre: </label><input type='text' id='nombre' name='nombre' value='"+nombre+"'/><br>";
           var inputTexto="<label for='comentario'>Comentario: </label><input type='text' id='comentario' name='comentario' value='"+texto+"'/><br>";
