@@ -18,7 +18,7 @@ services:
       - ./app:/app:rw
       - ./config:/home/coder/.config/code-server
   node_backend:
-     image: node_simpleapp_backend
+     image: sgssiworks/node_simpleapp_backend
      ports:
        - "81:8080"
      #volumes:
