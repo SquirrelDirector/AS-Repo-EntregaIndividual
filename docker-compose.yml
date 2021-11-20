@@ -1,0 +1,27 @@
+version: '3.1'
+services:
+  postgreDB:
+    image: postgres
+    environment:
+      - POSTGRES_DB=db_pruebas
+      - POSTGRES_PASSWORD=abc123.
+      - POSTGRES_USER=eufrasio
+  codespaces:
+    image: vsweb
+    tty: true
+    ports:
+      - "80:8080"
+    volumes:
+      - ./app:/app:rw
+      - ./config:/home/coder/.config/code-server
+  node_back:
+     image: node_propio
+     tty: true
+     ports:
+       - "81:8080"
+     volumes:
+       - ./app/web/back:/usr/app
+     command: nodemon server.js
+
+#volumes:
+#  config_codespace/config.yaml:
