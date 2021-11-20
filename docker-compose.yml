@@ -6,22 +6,24 @@ services:
       - POSTGRES_DB=db_pruebas
       - POSTGRES_PASSWORD=abc123.
       - POSTGRES_USER=eufrasio
+    volumes:
+      - volumen-postgres:/var/lib/postgresql/data
+      - ./script-bdprueba.sql:/docker-entrypoint-initdb.d/1-init.sql
   codespaces:
-    image: vsweb
+    image: codercom/code-server
     tty: true
     ports:
       - "80:8080"
     volumes:
       - ./app:/app:rw
       - ./config:/home/coder/.config/code-server
-  node_back:
-     image: node_propio
-     tty: true
+  node_backend:
+     image: node_simpleapp_backend
      ports:
        - "81:8080"
-     volumes:
-       - ./app/web/back:/usr/app
+     #volumes:
+       #- ./app/web/back:/usr/app
      command: nodemon server.js
 
-#volumes:
-#  config_codespace/config.yaml:
+volumes:
+  volumen-postgres:
