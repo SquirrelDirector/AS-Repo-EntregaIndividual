@@ -3,9 +3,13 @@ services:
   postgreDB:
     image: postgres
     environment:
-      - POSTGRES_DB=db_pruebas
-      - POSTGRES_PASSWORD=abc123.
-      - POSTGRES_USER=eufrasio
+      - POSTGRES_DB_FILE=/run/secrets/postgres-db
+      - POSTGRES_PASSWORD_FILE=/run/secrets/postgres-clave
+      - POSTGRES_USER_FILE=/run/secrets/postgres-usuario
+    secrets:
+      - postgres-db
+      - postgres-usuario
+      - postgres-clave
     volumes:
       - volumen-postgres:/var/lib/postgresql/data
       - ./script-bdprueba.sql:/docker-entrypoint-initdb.d/1-init.sql
@@ -23,7 +27,15 @@ services:
        - "80:8080"
      #volumes:
        #- ./app/web/back:/usr/app
-     command: nodemon server.js
+     #command: nodemon server.js
 
 volumes:
   volumen-postgres:
+
+secrets:
+  postgres-db:
+    file: postgres-db.txt
+  postgres-usuario:
+    file: postgres-usuario.txt
+  postgres-clave:
+    file: postgres-clave.txt

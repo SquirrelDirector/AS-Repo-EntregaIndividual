@@ -6,3 +6,4 @@ RUN npm install express
 RUN npm i body-parser
 RUN npm install nodemon -g
 
+CMD ["node", "server.js"]
