@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pod-postgre-db
+  labels:
+    name: app-db
+    app: myapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: app-db
+      app: myapp
+  template:
+    metadata:
+      labels:
+        name: app-db
+        app: myapp
+    spec:
+      containers:
+      - name: postgre-db
+        image: postgres
+        env:
+            - name: POSTGRES_DB
+              value: "db_pruebas"
+            - name: POSTGRES_USER
+              value: "eufrasio"
+            - name: POSTGRES_PASSWORD
+              value: "abc123."
+        volumeMounts:
+          - name: psql-storage
+            mountPath: /var/lib/postgresql/data
+            subPath: postgresql
+          - name: carga-datos
+            mountPath: /docker-entrypoint-initdb.d/  
+      volumes:
+        - name: psql-storage
+          persistentVolumeClaim:
+            claimName: volumen-persistente-postgresql
+        - name: carga-datos
+          configMap:
+            name: psql-carga-datos
+    
+
+
+#      ports:
+#        - containerPort: 3000

@@ -1,0 +1,38 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pod-node-simpleapp
+  labels:
+    name: app-pod
+    app: myapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: app-pod
+      app: myapp
+  template:
+    metadata:
+      labels:
+        name: app-pod
+        app: myapp
+    spec:
+      containers:
+      - name: node-backend
+        image: sgssiworks/node_simpleapp_backend
+
+#apiVersion: v1
+#kind: Pod
+#metadata:
+#  name: pod-node-simpleapp
+#  labels:
+#    name: app-pod
+#    app: myapp
+#spec:
+#  containers:
+#    - name: node-backend
+#      image: sgssiworks/node_simpleapp_backend
+#      ports:
+#        - containerPort: 8080
+

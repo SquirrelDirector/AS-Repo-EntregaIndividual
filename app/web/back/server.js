@@ -9,7 +9,7 @@ const PORT = 8080;
 const HOST = '0.0.0.0';
 const connectionData = {
   user: 'eufrasio',
-  host: 'postgreDB',
+  host: 'postgre-db',
   database: 'db_pruebas',
   password: 'abc123.',
   port: 5432,
@@ -30,7 +30,7 @@ app.get('/', (req, res) => {
 if(req.method=="GET"){
 
   
-  var headHTML="<html><head><style>*{ font-family: Verdana }</style><title>Pruebas desde Node.JS</title></head><body><h1>Introduzca datos en el libro de visitas</h1>";
+  var headHTML="<html><head><style>*{ font-family: Verdana }</style><title>Pruebas desde Node.JS (2)</title></head><body><h1>Introduzca datos en el libro de visitas</h1>";
   var form="<form method='POST' action='modificar'>";
   var inputNombre="<label for='nombre'>Nombre: </label><input type='text' id='nombre' name='nombre'/><br>";
   var inputTexto="<label for='comentario'>Comentario: </label><input type='text' id='comentario' name='comentario'/><br>";
